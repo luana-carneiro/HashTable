@@ -6,17 +6,13 @@ class TabelaHash:
         self.tabela = [None] * tamanho_tabela
 
     def hash_function(self, chave, tentativa):
-    # Função de hash somada a tentativa (endereçamento linear)
         return (hash(chave) + tentativa) % self.tamanho_tabela
-
-  # Funções de inserção (chave, dado), busca e remoção por chave de busca.
 
     def adicionar_elemento(self, chave, dado):
         tentativa = 0
         indice = self.hash_function(chave, tentativa)
 
         while self.tabela[indice] is not None:
-            # Em caso de colisão, tenta o próximo slot
             tentativa += 1
             indice = self.hash_function(chave, tentativa)
 
@@ -27,7 +23,6 @@ class TabelaHash:
         indice = self.hash_function(chave, tentativa)
 
         while self.tabela[indice] is not None:
-            # Em caso de colisão, tenta o próximo slot
             if self.tabela[indice][0] == chave:
                 return self.tabela[indice][1]
 
@@ -41,7 +36,6 @@ class TabelaHash:
         indice = self.hash_function(chave, tentativa)
 
         while self.tabela[indice] is not None:
-            # Em caso de colisão, tenta o próximo slot
             if self.tabela[indice][0] == chave:
                 self.tabela[indice] = None
                 print(f"Elemento {chave} removido.")
